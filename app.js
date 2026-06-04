@@ -39,53 +39,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardDirectionsBtn = document.getElementById("card-directions-btn");
     const closeCardBtn = document.getElementById("close-card-btn");
 
-    // Mascot Elements & Interactive Puns
-    const mascotTrigger = document.getElementById("mascot-trigger");
-    const mascotSpeechBubble = document.getElementById("mascot-speech-bubble");
-    const mascotSpeechClose = document.getElementById("mascot-speech-close");
-    const mascotSpeechText = document.getElementById("mascot-speech-text");
-    const mascotTotalCount = document.getElementById("mascot-total-count");
-
-    const LUMIE_PUNS = [
-        "Je vous éclaire pour trouver votre jeu de boules lumineuses ! 🌟",
-        "Une idée brillante ? Localisez une boutique près de chez vous ! 💡",
-        "Pas besoin d'être un détective de l'ombre pour dénicher Lumios ! 🕵️‍♂️",
-        "Lumios illumine vos soirées en famille... et entre parents ! ✨",
-        "Suivez ma lumière, je vous guide vers le magasin le plus proche ! 🔦",
-        "Faites briller vos lancers avec Lumios, le jeu de boules phosphorescentes ! 🔮"
-    ];
+    // Mascot Element
+    const sidebarMascotCard = document.getElementById("sidebar-mascot-card");
+    const mascotSidebarCount = document.getElementById("mascot-sidebar-count");
 
     /**
-     * Helper: Hides (closes) the welcome mascot speech bubble.
+     * Helper: Hides (collapses) the sidebar mascot card.
      */
     function hideMascotCard() {
-        if (mascotSpeechBubble) {
-            mascotSpeechBubble.classList.add("closed");
+        if (sidebarMascotCard) {
+            sidebarMascotCard.classList.add("collapsed");
         }
     }
 
     /**
-     * Helper: Toggles the mascot speech bubble and displays a random pun.
+     * Helper: Shows (expands) the sidebar mascot card.
      */
-    function toggleMascotBubble() {
-        if (mascotSpeechBubble) {
-            if (mascotSpeechBubble.classList.contains("closed")) {
-                const randomPun = LUMIE_PUNS[Math.floor(Math.random() * LUMIE_PUNS.length)];
-                mascotSpeechText.innerHTML = `<strong>Lumie :</strong> ${randomPun}`;
-                mascotSpeechBubble.classList.remove("closed");
-            } else {
-                mascotSpeechBubble.classList.add("closed");
-            }
-        }
-    }
-
-    /**
-     * Helper: Closes the speech bubble when clicking close button.
-     */
-    function closeMascotBubble(e) {
-        if (e) e.stopPropagation();
-        if (mascotSpeechBubble) {
-            mascotSpeechBubble.classList.add("closed");
+    function showMascotCard() {
+        if (sidebarMascotCard) {
+            sidebarMascotCard.classList.remove("collapsed");
         }
     }
 
@@ -197,8 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
             filteredStores = [...allStores];
             
             counterValue.textContent = filteredStores.length;
-            if (mascotTotalCount) {
-                mascotTotalCount.textContent = allStores.length;
+            if (mascotSidebarCount) {
+                mascotSidebarCount.textContent = allStores.length;
             }
             
             // Build Map Markers & List
@@ -431,6 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (term === "") {
             clearSearchBtn.style.display = "none";
             filteredStores = [...allStores];
+            showMascotCard();
         } else {
             clearSearchBtn.style.display = "flex";
             hideMascotCard();
@@ -653,14 +626,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             toggleSidebar(false);
         }
-    }
-
-    // Mascot Event Listeners
-    if (mascotTrigger) {
-        mascotTrigger.addEventListener("click", toggleMascotBubble);
-    }
-    if (mascotSpeechClose) {
-        mascotSpeechClose.addEventListener("click", closeMascotBubble);
     }
 
     window.addEventListener("resize", adjustSearchForMobile);

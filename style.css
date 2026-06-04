@@ -278,183 +278,178 @@ body, html {
     line-height: 1.45;
 }
 
-/* Floating Mascot Guide on Map */
-.map-mascot-guide {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    z-index: 1000;
+/* Large Mascot Header (Top Left on desktop) */
+.sidebar-mascot-header {
     display: flex;
-    align-items: flex-end;
-    pointer-events: none; /* Let clicks pass through except on interactive elements */
-}
-
-.mascot-avatar-wrapper {
-    width: 72px;
-    height: 72px;
-    border-radius: 18px;
-    background: #cccccc;
-    border: 3px solid var(--lumios-blue);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    position: relative;
-    cursor: pointer;
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(54, 57, 141, 0.15) 0%, rgba(12, 13, 36, 0.3) 100%);
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    pointer-events: auto;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color var(--transition-fast);
-    animation: mascot-float 3.5s ease-in-out infinite;
-}
-
-.mascot-avatar-wrapper:hover {
-    transform: scale(1.15) translateY(-5px);
-    border-color: var(--lumios-red);
-}
-
-.mascot-avatar-floating {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* Pulsing decoration behind avatar */
-.mascot-pulse-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 18px;
-    border: 2px solid var(--lumios-blue);
-    opacity: 0;
-    z-index: -1;
-    animation: mascot-radar 2.5s infinite;
-}
-
-.mascot-speech-bubble {
-    position: relative;
-    background: #ffffff;
-    border: 2.5px solid var(--lumios-blue);
-    border-radius: 18px;
-    padding: 12px 32px 12px 16px;
-    max-width: 290px;
-    margin-left: 18px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    pointer-events: auto;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-origin: bottom left;
+    max-height: 280px; /* High enough to fit content */
     opacity: 1;
+    flex-shrink: 0; /* Prevent compression in flex layouts */
 }
 
-/* Speech bubble arrow */
-.mascot-speech-bubble::before {
-    content: '';
-    position: absolute;
-    left: -14px;
-    bottom: 22px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 14px solid var(--lumios-blue);
-}
-
-.mascot-speech-bubble::after {
-    content: '';
-    position: absolute;
-    left: -10px;
-    bottom: 22px;
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 11px solid #ffffff;
-    z-index: 1;
-}
-
-.mascot-speech-bubble.closed {
+.sidebar-mascot-header.collapsed {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom-color: transparent;
     opacity: 0;
-    transform: scale(0.6) translateY(20px);
     pointer-events: none;
 }
 
-.mascot-speech-text {
+.sidebar-mascot-wrapper {
+    position: relative;
+    width: 104px;
+    height: 104px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-mascot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+    z-index: 2;
+    animation: mascot-gentle-float 4s ease-in-out infinite;
+}
+
+/* Glowing luciole tail effect positioned exactly behind the glowing yellow light in mascot.png */
+.luciole-tail-glow {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(254, 240, 138, 0.95) 0%, rgba(234, 179, 8, 0.4) 50%, rgba(234, 179, 8, 0) 70%);
+    filter: blur(4px);
+    z-index: 1;
+    animation: tail-glow 2s ease-in-out infinite alternate;
+}
+
+.sidebar-mascot-bubble {
+    width: 100%;
+    position: relative;
+    background: #ffffff;
+    border: 2px solid var(--lumios-blue);
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: var(--shadow-md);
+    box-sizing: border-box;
+}
+
+/* Arrow pointing UP to the mascot */
+.sidebar-mascot-bubble::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid var(--lumios-blue);
+}
+
+.sidebar-mascot-bubble::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 8px solid #ffffff;
+    z-index: 1;
+}
+
+.sidebar-mascot-bubble p {
     font-size: 13px;
     line-height: 1.45;
     color: var(--lumios-blue);
     margin: 0;
+    text-align: center;
 }
 
-.mascot-speech-text strong {
+.sidebar-mascot-bubble p strong {
     color: var(--lumios-blue);
 }
 
-#mascot-total-count {
+#mascot-sidebar-count {
     color: var(--lumios-red);
     font-weight: 800;
     font-size: 14px;
 }
 
-.mascot-speech-close {
-    position: absolute;
-    top: 6px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-    color: #888;
-    cursor: pointer;
-    line-height: 1;
-    transition: var(--transition-fast);
-}
-
-.mascot-speech-close:hover {
-    color: var(--lumios-red);
-}
-
-/* Floating animation keyframes */
-@keyframes mascot-float {
+/* Animations */
+@keyframes mascot-gentle-float {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    50% { transform: translateY(-4px); }
     100% { transform: translateY(0); }
 }
 
-@keyframes mascot-radar {
+@keyframes tail-glow {
     0% {
-        transform: scale(1);
-        opacity: 0.8;
+        transform: scale(0.85);
+        opacity: 0.6;
+        box-shadow: 0 0 10px rgba(254, 240, 138, 0.5);
     }
     100% {
-        transform: scale(1.4);
-        opacity: 0;
+        transform: scale(1.15);
+        opacity: 1;
+        box-shadow: 0 0 25px rgba(254, 240, 138, 0.9), 0 0 40px rgba(234, 179, 8, 0.4);
     }
 }
 
 /* Mobile responsive adjustments */
 @media (max-width: 960px) {
-    .map-mascot-guide {
-        bottom: 80px; /* Above the detail card on mobile */
-        left: 12px;
+    .sidebar-mascot-header {
+        padding: 12px 16px;
+        gap: 8px;
+        max-height: 200px;
     }
     
-    .mascot-avatar-wrapper {
-        width: 58px;
-        height: 58px;
-        border-radius: 14px;
+    .sidebar-mascot-wrapper {
+        width: 80px;
+        height: 80px;
     }
     
-    .mascot-pulse-ring {
-        border-radius: 14px;
+    .luciole-tail-glow {
+        width: 28px;
+        height: 28px;
+        bottom: 8px;
+        right: 8px;
     }
     
-    .mascot-speech-bubble {
-        max-width: 210px;
-        margin-left: 12px;
-        padding: 10px 28px 10px 12px;
+    .sidebar-mascot-bubble {
+        padding: 8px 12px;
+        border-radius: 12px;
     }
     
-    .mascot-speech-text {
+    .sidebar-mascot-bubble p {
         font-size: 11.5px;
+        line-height: 1.35;
+    }
+    
+    .sidebar-mascot-bubble::before {
+        top: -8px;
+        border-bottom-width: 8px;
+    }
+    .sidebar-mascot-bubble::after {
+        top: -5px;
+        border-bottom-width: 6px;
     }
 }
 

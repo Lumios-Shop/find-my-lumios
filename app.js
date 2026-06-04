@@ -105,13 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
             attributionControl: true
         }).setView(defaultCenter, defaultZoom);
 
-        // Dynamic tile layer selection based on prefers-color-scheme light/dark settings
-        const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-        const tileUrl = prefersLight
-            ? "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-            : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
-
-        L.tileLayer(tileUrl, {
+        // CartoDB Dark Matter tile layer for an elegant night celestial feel
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             subdomains: "abcd",
             maxZoom: 20

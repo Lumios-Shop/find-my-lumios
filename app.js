@@ -39,13 +39,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardDirectionsBtn = document.getElementById("card-directions-btn");
     const closeCardBtn = document.getElementById("close-card-btn");
 
+    // Mascot Elements & Interactive Puns
+    const mascotTrigger = document.getElementById("mascot-trigger");
+    const mascotSpeechBubble = document.getElementById("mascot-speech-bubble");
+    const mascotSpeechClose = document.getElementById("mascot-speech-close");
+    const mascotSpeechText = document.getElementById("mascot-speech-text");
+    const mascotTotalCount = document.getElementById("mascot-total-count");
+
+    const LUMIE_PUNS = [
+        "Je vous éclaire pour trouver votre jeu de boules lumineuses ! 🌟",
+        "Une idée brillante ? Localisez une boutique près de chez vous ! 💡",
+        "Pas besoin d'être un détective de l'ombre pour dénicher Lumios ! 🕵️‍♂️",
+        "Lumios illumine vos soirées en famille... et entre parents ! ✨",
+        "Suivez ma lumière, je vous guide vers le magasin le plus proche ! 🔦",
+        "Faites briller vos lancers avec Lumios, le jeu de boules phosphorescentes ! 🔮"
+    ];
+
     /**
-     * Helper: Hides the welcome mascot card if present.
+     * Helper: Hides (closes) the welcome mascot speech bubble.
      */
     function hideMascotCard() {
-        const mascotCard = document.getElementById("mascot-card");
-        if (mascotCard) {
-            mascotCard.style.display = "none";
+        if (mascotSpeechBubble) {
+            mascotSpeechBubble.classList.add("closed");
+        }
+    }
+
+    /**
+     * Helper: Toggles the mascot speech bubble and displays a random pun.
+     */
+    function toggleMascotBubble() {
+        if (mascotSpeechBubble) {
+            if (mascotSpeechBubble.classList.contains("closed")) {
+                const randomPun = LUMIE_PUNS[Math.floor(Math.random() * LUMIE_PUNS.length)];
+                mascotSpeechText.innerHTML = `<strong>Lumie :</strong> ${randomPun}`;
+                mascotSpeechBubble.classList.remove("closed");
+            } else {
+                mascotSpeechBubble.classList.add("closed");
+            }
+        }
+    }
+
+    /**
+     * Helper: Closes the speech bubble when clicking close button.
+     */
+    function closeMascotBubble(e) {
+        if (e) e.stopPropagation();
+        if (mascotSpeechBubble) {
+            mascotSpeechBubble.classList.add("closed");
         }
     }
 
@@ -157,6 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
             filteredStores = [...allStores];
             
             counterValue.textContent = filteredStores.length;
+            if (mascotTotalCount) {
+                mascotTotalCount.textContent = allStores.length;
+            }
             
             // Build Map Markers & List
             renderStoreMarkers();
@@ -610,6 +653,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             toggleSidebar(false);
         }
+    }
+
+    // Mascot Event Listeners
+    if (mascotTrigger) {
+        mascotTrigger.addEventListener("click", toggleMascotBubble);
+    }
+    if (mascotSpeechClose) {
+        mascotSpeechClose.addEventListener("click", closeMascotBubble);
     }
 
     window.addEventListener("resize", adjustSearchForMobile);

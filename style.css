@@ -278,72 +278,184 @@ body, html {
     line-height: 1.45;
 }
 
-/* Mascot Welcome Card */
-.mascot-welcome-card {
-    position: relative;
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 12px 32px 12px 12px;
-    margin: 16px;
+/* Floating Mascot Guide on Map */
+.map-mascot-guide {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    z-index: 1000;
     display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(253, 249, 240, 0.1);
-    animation: slideUp 0.4s ease-out;
+    align-items: flex-end;
+    pointer-events: none; /* Let clicks pass through except on interactive elements */
 }
 
-.mascot-img-container {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    border: 2px solid var(--lumios-blue);
-    background: #ffffff;
+.mascot-avatar-wrapper {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: #cccccc;
+    border: 3px solid var(--lumios-blue);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    position: relative;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    pointer-events: auto;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color var(--transition-fast);
+    animation: mascot-float 3.5s ease-in-out infinite;
 }
 
-.mascot-avatar {
-    width: 95%;
-    height: 95%;
+.mascot-avatar-wrapper:hover {
+    transform: scale(1.15) translateY(-5px);
+    border-color: var(--lumios-red);
+}
+
+.mascot-avatar-floating {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
-.mascot-text-container {
-    flex-grow: 1;
+/* Pulsing decoration behind avatar */
+.mascot-pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    border: 2px solid var(--lumios-blue);
+    opacity: 0;
+    z-index: -1;
+    animation: mascot-radar 2.5s infinite;
 }
 
-.mascot-bubble {
-    font-size: 12.5px;
+.mascot-speech-bubble {
+    position: relative;
+    background: #ffffff;
+    border: 2.5px solid var(--lumios-blue);
+    border-radius: 18px;
+    padding: 12px 32px 12px 16px;
+    max-width: 290px;
+    margin-left: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    pointer-events: auto;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: bottom left;
+    opacity: 1;
+}
+
+/* Speech bubble arrow */
+.mascot-speech-bubble::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    bottom: 22px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 14px solid var(--lumios-blue);
+}
+
+.mascot-speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    bottom: 22px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 11px solid #ffffff;
+    z-index: 1;
+}
+
+.mascot-speech-bubble.closed {
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+    pointer-events: none;
+}
+
+.mascot-speech-text {
+    font-size: 13px;
     line-height: 1.45;
     color: var(--lumios-blue);
     margin: 0;
 }
 
-.mascot-bubble strong {
+.mascot-speech-text strong {
     color: var(--lumios-blue);
-    font-weight: 700;
 }
 
-.mascot-close-btn {
+#mascot-total-count {
+    color: var(--lumios-red);
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.mascot-speech-close {
     position: absolute;
     top: 6px;
     right: 10px;
     background: transparent;
     border: none;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 18px;
+    font-weight: bold;
     color: #888;
     cursor: pointer;
     line-height: 1;
     transition: var(--transition-fast);
 }
 
-.mascot-close-btn:hover {
+.mascot-speech-close:hover {
     color: var(--lumios-red);
+}
+
+/* Floating animation keyframes */
+@keyframes mascot-float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes mascot-radar {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 960px) {
+    .map-mascot-guide {
+        bottom: 80px; /* Above the detail card on mobile */
+        left: 12px;
+    }
+    
+    .mascot-avatar-wrapper {
+        width: 58px;
+        height: 58px;
+        border-radius: 14px;
+    }
+    
+    .mascot-pulse-ring {
+        border-radius: 14px;
+    }
+    
+    .mascot-speech-bubble {
+        max-width: 210px;
+        margin-left: 12px;
+        padding: 10px 28px 10px 12px;
+    }
+    
+    .mascot-speech-text {
+        font-size: 11.5px;
+    }
 }
 
 .sidebar-info-bar {

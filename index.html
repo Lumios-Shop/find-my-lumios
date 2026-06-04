@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     
     <!-- Custom Style CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
     <div class="app-container">
@@ -71,22 +71,6 @@
             
             <!-- Sidebar Panel -->
             <aside class="app-sidebar" id="sidebar">
-                <div class="sidebar-intro">
-                    <h1 class="sidebar-title">Prêt à illuminer vos soirées ?</h1>
-                    <p class="sidebar-subtitle">Localisez une boutique partenaire pour trouver votre boîte de Lumios.</p>
-                </div>
-                
-                <!-- Welcome card with detective mascot -->
-                <div class="mascot-welcome-card" id="mascot-card">
-                    <div class="mascot-img-container">
-                        <img src="mascot.png" alt="Lumie la Luciole" class="mascot-avatar">
-                    </div>
-                    <div class="mascot-text-container">
-                        <p class="mascot-bubble"><strong>Moi c'est Lumie !</strong> 🔍 Je vous aide à dénicher une boîte de <strong>Lumios</strong> dans les boutiques près de chez vous.</p>
-                    </div>
-                    <button class="mascot-close-btn" onclick="document.getElementById('mascot-card').style.display='none';" title="Masquer l'aide">×</button>
-                </div>
-                
                 <div class="sidebar-info-bar">
                     <div class="store-counter">
                         <span id="counter-value">0</span> boutiques trouvées
@@ -108,6 +92,20 @@
             <!-- Map View Area -->
             <section class="map-container" id="map-section">
                 <div id="map"></div>
+                
+                <!-- Floating Mascot Guide on Map -->
+                <div class="map-mascot-guide" id="map-mascot-guide">
+                    <div class="mascot-avatar-wrapper" id="mascot-trigger" title="Discuter avec Lumie !">
+                        <img src="mascot.png" alt="Lumie la Luciole" class="mascot-avatar-floating">
+                        <span class="mascot-pulse-ring"></span>
+                    </div>
+                    <div class="mascot-speech-bubble" id="mascot-speech-bubble">
+                        <button class="mascot-speech-close" id="mascot-speech-close" title="Masquer le message">×</button>
+                        <p class="mascot-speech-text" id="mascot-speech-text">
+                            <strong>Moi c'est Lumie !</strong> 🔍 Je vous éclaire : il y a actuellement <strong id="mascot-total-count">...</strong> boutiques partenaires Lumios en France. Tapez votre ville ou cliquez sur <em>"Autour de moi"</em> pour lancer la recherche !
+                        </p>
+                    </div>
+                </div>
                 
                 <!-- Floating Info Card on bottom for mobile, sidebar-like for desktop -->
                 <div class="floating-store-card" id="detail-card" style="display: none;">
@@ -158,6 +156,6 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     
     <!-- Custom Application logic -->
-    <script src="app.js"></script>
+    <script src="app.js?v=1.1"></script>
 </body>
 </html>

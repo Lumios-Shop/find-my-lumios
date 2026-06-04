@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let userCoords = null;
     let userLocationMarker = null;
     const markerMap = new Map(); // Store ID -> Marker reference
+    const defaultCenter = [46.45, 2.2];
+    const defaultZoom = 6;
 
     // Colors matching the Lumios ball game
     const LUMIOS_COLORS = ["blue", "green", "red"];
@@ -95,8 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function initMap() {
         // Center of France (approximate coordinates)
-        const defaultCenter = [46.45, 2.2];
-        const defaultZoom = 6;
 
         map = L.map("map", {
             zoomControl: true,
@@ -105,8 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
             attributionControl: true
         }).setView(defaultCenter, defaultZoom);
 
-        // CartoDB Dark Matter tile layer for an elegant night celestial feel
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        // Dynamic tile layer selection based on prefers-color-scheme light/dark settings
+        const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        const tileUrl = prefersLight
+            ? "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+            : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
+
+        L.tileLayer(tileUrl, {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             subdomains: "abcd",
             maxZoom: 20
@@ -392,6 +397,10 @@ document.addEventListener("DOMContentLoaded", () => {
     closeCardBtn.addEventListener("click", () => {
         deselectActiveMarker();
         hideDetailCard();
+        // On mobile, automatically reopen the sidebar drawer to return to the list (demi tour)
+        if (window.innerWidth <= 960) {
+            toggleSidebar(true);
+        }
     });
 
     /**
@@ -581,6 +590,10 @@ document.addEventListener("DOMContentLoaded", () => {
             sidebar.classList.add("open");
             burgerIcon.style.display = "none";
             closeIcon.style.display = "block";
+            // On mobile, if we open the sidebar drawer, hide the detail card to avoid visual stack overlays
+            if (window.innerWidth <= 960) {
+                hideDetailCard();
+            }
         } else {
             sidebar.classList.remove("open");
             burgerIcon.style.display = "block";
@@ -629,6 +642,58 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.addEventListener("resize", adjustSearchForMobile);
+
+    // Random Hover Border Color for Lumie
+    const mascotWrapper = document.querySelector(".sidebar-mascot-wrapper");
+    if (mascotWrapper && sidebarMascotCard) {
+        mascotWrapper.addEventListener("mouseenter", () => {
+            const randomColor = Math.random() < 0.5 ? "hover-blue" : "hover-green";
+            sidebarMascotCard.classList.remove("hover-blue", "hover-green");
+            sidebarMascotCard.classList.add(randomColor);
+        });
+        mascotWrapper.addEventListener("mouseleave", () => {
+            sidebarMascotCard.classList.remove("hover-blue", "hover-green");
+        });
+    }
+
+    // Logo / Wordmark click to reset and return Home (universal Back/Reset button)
+    const logoContainer = document.querySelector(".logo-container");
+    if (logoContainer) {
+        logoContainer.style.cursor = "pointer";
+        logoContainer.addEventListener("click", () => {
+            // Reset search input
+            searchInput.value = "";
+            clearSearchBtn.style.display = "none";
+            
+            // Restore all stores
+            filteredStores = [...allStores];
+            
+            // Show Lumie again
+            showMascotCard();
+            
+            // Deselect any active marker and card
+            deselectActiveMarker();
+            hideDetailCard();
+            
+            // Reset map center
+            map.setView(defaultCenter, defaultZoom);
+            
+            // Update map markers and sidebar list
+            counterValue.textContent = filteredStores.length;
+            renderStoreMarkers();
+            renderStoresList();
+            
+            // Hide proximity indicators
+            if (geoStatusIndicator) {
+                geoStatusIndicator.style.display = "none";
+            }
+            
+            // On mobile, restore sidebar drawer open status
+            if (window.innerWidth <= 960) {
+                toggleSidebar(true);
+            }
+        });
+    }
 
     // Initial Execution
     initMap();

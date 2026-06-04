@@ -17,7 +17,7 @@
     --lumios-cyan: #00f0ff;
     --lumios-blue: #36398D;      /* Main Blue */
     --lumios-green: #10b981;
-    --lumios-red: #ef4444;
+    --lumios-red: #EB615F;
     --lumios-orange: #f97316;
     --lumios-pink: #ec4899;
     
@@ -276,6 +276,74 @@ body, html {
     color: var(--text-secondary);
     margin: 0;
     line-height: 1.45;
+}
+
+/* Mascot Welcome Card */
+.mascot-welcome-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px 32px 12px 12px;
+    margin: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(253, 249, 240, 0.1);
+    animation: slideUp 0.4s ease-out;
+}
+
+.mascot-img-container {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--lumios-blue);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mascot-avatar {
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+}
+
+.mascot-text-container {
+    flex-grow: 1;
+}
+
+.mascot-bubble {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--lumios-blue);
+    margin: 0;
+}
+
+.mascot-bubble strong {
+    color: var(--lumios-blue);
+    font-weight: 700;
+}
+
+.mascot-close-btn {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: 300;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+    transition: var(--transition-fast);
+}
+
+.mascot-close-btn:hover {
+    color: var(--lumios-red);
 }
 
 .sidebar-info-bar {

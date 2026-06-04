@@ -40,6 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeCardBtn = document.getElementById("close-card-btn");
 
     /**
+     * Helper: Hides the welcome mascot card if present.
+     */
+    function hideMascotCard() {
+        const mascotCard = document.getElementById("mascot-card");
+        if (mascotCard) {
+            mascotCard.style.display = "none";
+        }
+    }
+
+    /**
      * Helper: Assigns a consistent brand color based on the store's name.
      */
     function getStoreColor(storeName) {
@@ -279,6 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function selectStore(store, marker, wasMarkerClick = false) {
         deselectActiveMarker();
         activeStoreId = store.id;
+        hideMascotCard();
 
         // Highlight list item in sidebar
         const listItems = storesList.querySelectorAll(".store-item");
@@ -379,6 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
             filteredStores = [...allStores];
         } else {
             clearSearchBtn.style.display = "flex";
+            hideMascotCard();
             
             // Search criteria: Name, City, Postcode, Address
             filteredStores = allStores.filter((store) => {
@@ -483,6 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     lat: position.coords.latitude,
                     lon: position.coords.longitude
                 };
+                hideMascotCard();
 
                 // Place User pulse marker on map
                 if (userLocationMarker) {

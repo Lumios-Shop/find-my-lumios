@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const markerMap = new Map(); // Store ID -> Marker reference
 
     // Colors matching the Lumios ball game
-    const LUMIOS_COLORS = ["blue", "green", "red", "orange", "pink"];
+    const LUMIOS_COLORS = ["blue", "green", "red"];
 
     // DOM Elements References
     const searchInput = document.getElementById("search-input");

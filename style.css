@@ -637,30 +637,25 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Glowing colors matching Lumios spheres */
+/* Solid colors matching Lumios spheres (no glow/gradient) */
 .marker-blue .marker-pin {
     background-color: var(--lumios-blue);
-    box-shadow: 0 0 12px var(--lumios-blue), 0 0 4px var(--lumios-blue);
 }
 
 .marker-green .marker-pin {
     background-color: var(--lumios-green);
-    box-shadow: 0 0 12px var(--lumios-green), 0 0 4px var(--lumios-green);
 }
 
 .marker-red .marker-pin {
     background-color: var(--lumios-red);
-    box-shadow: 0 0 12px var(--lumios-red), 0 0 4px var(--lumios-red);
 }
 
 .marker-orange .marker-pin {
     background-color: var(--lumios-orange);
-    box-shadow: 0 0 12px var(--lumios-orange), 0 0 4px var(--lumios-orange);
 }
 
 .marker-pink .marker-pin {
     background-color: var(--lumios-pink);
-    box-shadow: 0 0 12px var(--lumios-pink), 0 0 4px var(--lumios-pink);
 }
 
 /* Selected active marker styles */

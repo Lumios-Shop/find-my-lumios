@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Où trouver Lumios ? Carte des boutiques</title>
+    
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="Découvrez toutes les boutiques de jeux de société qui commercialisent Lumios, le jeu d'adresse et d'ambiance lumineux. Trouvez la boutique la plus proche de chez vous !">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
+    <!-- Custom Style CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="logo-container">
+                <!-- Displays the brand logo graphic and/or wordmark based on availability -->
+                <img src="logo.png" alt="Lumios Logo" class="brand-logo" onerror="this.style.display='none';">
+                <div class="brand-text-logo">
+                    LUM<span>I</span>OS
+                </div>
+            </div>
+            
+            <div class="search-section">
+                <div class="search-bar-wrapper">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Rechercher une boutique, ville, code postal..." autocomplete="off">
+                    <button id="clear-search-btn" class="clear-btn" title="Effacer la recherche" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <button id="geolocation-btn" class="geo-btn" title="Trouver les boutiques autour de moi">
+                    <svg class="geo-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
+                    </svg>
+                    <span>Autour de moi</span>
+                </button>
+            </div>
+            
+            <button id="sidebar-toggle-btn" class="mobile-toggle-btn" aria-label="Afficher la liste">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="burger-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="close-icon" style="display:none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- Main Body Wrapper -->
+        <main class="app-body">
+            
+            <!-- Sidebar Panel -->
+            <aside class="app-sidebar" id="sidebar">
+                <div class="sidebar-info-bar">
+                    <div class="store-counter">
+                        <span id="counter-value">0</span> boutiques trouvées
+                    </div>
+                    <div id="geo-status-indicator" class="geo-status-indicator" style="display: none;">
+                        <span class="pulse-dot"></span> Trié par proximité
+                    </div>
+                </div>
+                
+                <div class="stores-list-container" id="stores-list">
+                    <!-- Loaded dynamically via JS -->
+                    <div class="loading-placeholder">
+                        <div class="spinner"></div>
+                        <p>Chargement des boutiques de jeux...</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Map View Area -->
+            <section class="map-container" id="map-section">
+                <div id="map"></div>
+                
+                <!-- Floating Info Card on bottom for mobile, sidebar-like for desktop -->
+                <div class="floating-store-card" id="detail-card" style="display: none;">
+                    <button class="close-card-btn" id="close-card-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    
+                    <div class="card-layout">
+                        <div class="card-image-container">
+                            <img src="packaging.png" alt="Lumios Jeu Packaging" class="card-packaging-img">
+                        </div>
+                        <div class="card-content-container">
+                            <div class="card-main-info">
+                                <div class="store-tag">Lumios disponible</div>
+                                <h2 class="card-store-name" id="card-name">Nom Boutique</h2>
+                                <p class="card-store-address" id="card-address">Adresse complète</p>
+                                <div class="distance-badge" id="card-distance-badge" style="display: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="badge-icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
+                                    </svg>
+                                    <span id="card-distance">À 0 km</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-action-bar">
+                                <a href="#" target="_blank" id="card-directions-btn" class="action-btn directions-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="btn-icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8m-6-8.25L5.25 10.5m9.75-3.75l3.75 3.75M3 12h18" />
+                                    </svg>
+                                    Y aller (Itinéraire)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Leaflet.js Script -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Leaflet MarkerCluster Script -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    
+    <!-- Custom Application logic -->
+    <script src="app.js"></script>
+</body>
+</html>

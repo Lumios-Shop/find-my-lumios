@@ -113,18 +113,11 @@ body, html {
     object-fit: contain;
 }
 
-.brand-text-logo {
-    font-family: var(--font-header);
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: var(--text-primary);
-    text-shadow: 0 0 10px rgba(253, 249, 240, 0.15);
-}
-
-.brand-text-logo span {
-    color: var(--lumios-red);
-    text-shadow: 0 0 8px rgba(235, 97, 95, 0.4);
+.brand-wordmark {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(253, 249, 240, 0.15));
 }
 
 /* Search bar styling */

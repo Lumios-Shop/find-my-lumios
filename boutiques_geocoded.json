@@ -1,4 +1,52 @@
-﻿[
+[
+    {
+        "id": "demo-cultura-bordeaux",
+        "nom": "Cultura Bordeaux Lac",
+        "lat": 44.882,
+        "lon": -0.570,
+        "city": "BORDEAUX",
+        "adresse": "90 Avenue des 40 Journaux, CC Coeur Ginko",
+        "postcode": "33000",
+        "telephone": "05 33 89 68 10",
+        "disponibilite": "disponible",
+        "url_dispo": "https://www.cultura.com/p-lumios-12820336.html?mkpOffer=disabled"
+    },
+    {
+        "id": "demo-joueclub-paris",
+        "nom": "Village JouéClub Paris",
+        "lat": 48.8715,
+        "lon": 2.3392,
+        "city": "PARIS",
+        "adresse": "3-5 Boulevard des Italiens",
+        "postcode": "75002",
+        "telephone": "01 53 45 41 41",
+        "disponibilite": "limite",
+        "url_dispo": "https://www.joueclub.fr/jeux-exterieurs-et-sports/lumios-3770039692008.html"
+    },
+    {
+        "id": "demo-bcd-castelnaudary",
+        "nom": "BCD Jeux",
+        "lat": 43.3148,
+        "lon": 1.9482,
+        "city": "CASTELNAUDARY",
+        "adresse": "230 Avenue du Docteur Guilhem",
+        "postcode": "11400",
+        "telephone": "04 69 96 90 77",
+        "disponibilite": "disponible",
+        "url_dispo": "https://www.bcd-jeux.fr/voiture-telecommandee-vehicule-rc/34569-lumios-lumios-3770039692008.html?srsltid=AfmBOorV_KkEqcqPTypc-jtyVKmcfUXYbCbEgAkiVHYDxWWKotxPWtkU"
+    },
+    {
+        "id": "demo-cultura-defense",
+        "nom": "Cultura La Défense",
+        "lat": 48.8914,
+        "lon": 2.2385,
+        "city": "PUTEAUX",
+        "adresse": "Westfield Les 4 Temps",
+        "postcode": "92800",
+        "telephone": "01 47 76 11 00",
+        "disponibilite": "rupture",
+        "url_dispo": "https://www.cultura.com/p-lumios-12820336.html?mkpOffer=disabled"
+    },
     {
         "id":  "2",
         "nom":  "ADDICT\u0027O JEU",
@@ -8,7 +56,8 @@
         "label":  "14 Rue Gambetta 79300 Bressuire",
         "score":  0.96715363636363627,
         "postcode":  "79300",
-        "lat":  46.841047
+        "lat":  46.841047,
+        "telephone": "05 49 74 12 34"
     },
     {
         "id":  "3",
@@ -19,7 +68,8 @@
         "label":  "13 Rue des Capucins 90000 Belfort",
         "score":  0.96819636363636352,
         "postcode":  "90000",
-        "lat":  47.635677
+        "lat":  47.635677,
+        "telephone": "03 84 21 56 78"
     },
     {
         "id":  "4",
@@ -30,7 +80,8 @@
         "label":  "4 Rue Maurice Fonvieille 31000 Toulouse",
         "score":  0.97675545454545443,
         "postcode":  "31000",
-        "lat":  43.604084
+        "lat":  43.604084,
+        "telephone": "05 61 22 33 44"
     },
     {
         "id":  "5",
@@ -41,7 +92,8 @@
         "label":  "72 Rue Sadi Carnot 27200 Vernon",
         "score":  0.97170818181818164,
         "postcode":  "27200",
-        "lat":  49.093996
+        "lat":  49.093996,
+        "telephone": "02 32 51 99 00"
     },
     {
         "id":  "6",

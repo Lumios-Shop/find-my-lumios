@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     
     <!-- Custom Style CSS -->
-    <link rel="stylesheet" href="style.css?v=1.6">
+    <link rel="stylesheet" href="style.css?v=1.7">
 </head>
 <body>
     <div class="app-container">
@@ -128,13 +128,19 @@
                     
                     <div class="card-layout">
                         <div class="card-image-container">
-                            <img src="packaging.png" alt="Lumios Jeu Packaging" class="card-packaging-img">
+                             <img src="packaging.png" alt="Lumios Jeu Packaging" class="card-packaging-img">
                         </div>
                         <div class="card-content-container">
                             <div class="card-main-info">
-                                <div class="store-tag">Lumios disponible</div>
+                                <!-- Dynamic availability badge / warning info container -->
+                                <div id="card-availability-container"></div>
+                                
                                 <h2 class="card-store-name" id="card-name">Nom Boutique</h2>
                                 <p class="card-store-address" id="card-address">Adresse complète</p>
+                                
+                                <!-- Dynamic phone number container -->
+                                <div id="card-phone-container" class="card-phone-info" style="display: none;"></div>
+                                
                                 <div class="distance-badge" id="card-distance-badge" style="display: none;">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="badge-icon">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -150,6 +156,12 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8m-6-8.25L5.25 10.5m9.75-3.75l3.75 3.75M3 12h18" />
                                     </svg>
                                     Y aller (Itinéraire)
+                                </a>
+                                <a href="#" target="_blank" id="card-website-btn" class="action-btn website-btn" style="display: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="btn-icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
+                                    </svg>
+                                    Vérifier la dispo
                                 </a>
                             </div>
                         </div>
@@ -167,6 +179,6 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     
     <!-- Custom Application logic -->
-    <script src="app.js?v=1.6"></script>
+    <script src="app.js?v=1.7"></script>
 </body>
 </html>

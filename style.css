@@ -938,6 +938,158 @@ body, html {
     border-radius: 12px;
 }
 
+/* Dynamic Availability Badges */
+.availability-badge {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Status: Available (En stock) */
+.status-available {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.status-available .indicator-dot {
+    background-color: #10b981;
+    box-shadow: 0 0 8px #10b981;
+}
+
+/* Status: Limited (Stock limité) */
+.status-limited {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.status-limited .indicator-dot {
+    background-color: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b;
+}
+
+/* Status: Out of stock (Rupture) */
+.status-outofstock {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+.status-outofstock .indicator-dot {
+    background-color: #ef4444;
+    box-shadow: 0 0 8px #ef4444;
+}
+
+/* Warning Info Card for Unknown Availability */
+.availability-warning-card {
+    background: rgba(234, 179, 8, 0.06);
+    border: 1px solid rgba(234, 179, 8, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.warning-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #facc15;
+    margin-bottom: 4px;
+}
+
+.warning-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Scoped Map Light Theme overrides for warning info card */
+#map-section.map-light-theme .availability-warning-card {
+    background: rgba(180, 83, 9, 0.05);
+    border: 1px solid rgba(180, 83, 9, 0.15);
+}
+
+#map-section.map-light-theme .warning-title {
+    color: #b45309;
+}
+
+#map-section.map-light-theme .warning-text {
+    color: #4b5563;
+}
+
+/* Phone Number Styling */
+.card-phone-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    margin-top: -4px;
+}
+
+.card-phone-info svg {
+    width: 15px;
+    height: 15px;
+    color: var(--text-muted);
+}
+
+.card-phone-info a {
+    color: var(--lumios-cyan);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-fast);
+}
+
+.card-phone-info a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+#map-section.map-light-theme .card-phone-info a {
+    color: var(--lumios-blue);
+}
+
+#map-section.map-light-theme .card-phone-info a:hover {
+    color: #0c0d24;
+}
+
+/* Website availability verification button styling */
+.website-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.website-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #fff;
+    transform: translateY(-2px);
+}
+
+#map-section.map-light-theme .website-btn {
+    background: transparent;
+    color: var(--lumios-blue);
+    border: 1px solid rgba(54, 57, 141, 0.2);
+}
+
+#map-section.map-light-theme .website-btn:hover {
+    background: rgba(54, 57, 141, 0.05);
+    border-color: var(--lumios-blue);
+}
+
 .card-store-address {
     font-size: 14px;
     color: var(--text-secondary);

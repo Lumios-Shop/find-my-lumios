@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardDistanceBadge = document.getElementById("card-distance-badge");
     const cardDistance = document.getElementById("card-distance");
     const cardDirectionsBtn = document.getElementById("card-directions-btn");
+    const cardAvailabilityContainer = document.getElementById("card-availability-container");
+    const cardPhoneContainer = document.getElementById("card-phone-container");
+    const cardWebsiteBtn = document.getElementById("card-website-btn");
     const closeCardBtn = document.getElementById("close-card-btn");
 
     // Mascot Element
@@ -392,11 +395,63 @@ document.addEventListener("DOMContentLoaded", () => {
         // Direction Routing Link
         cardDirectionsBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${store.lat},${store.lon}`;
 
+        // Distance Badge
         if (store.distance !== undefined) {
             cardDistance.textContent = `À ${store.distance.toFixed(1)} km de vous`;
             cardDistanceBadge.style.display = "inline-flex";
         } else {
             cardDistanceBadge.style.display = "none";
+        }
+
+        // Render Availability Info
+        cardAvailabilityContainer.innerHTML = "";
+        const dispo = store.disponibilite ? store.disponibilite.toLowerCase() : "inconnu";
+        
+        if (dispo === "disponible") {
+            cardAvailabilityContainer.innerHTML = `
+                <div class="availability-badge status-available">
+                    <span class="indicator-dot"></span>
+                    En stock
+                </div>`;
+        } else if (dispo === "limite") {
+            cardAvailabilityContainer.innerHTML = `
+                <div class="availability-badge status-limited">
+                    <span class="indicator-dot"></span>
+                    Stock limité
+                </div>`;
+        } else if (dispo === "rupture") {
+            cardAvailabilityContainer.innerHTML = `
+                <div class="availability-badge status-outofstock">
+                    <span class="indicator-dot"></span>
+                    Rupture de stock
+                </div>`;
+        } else {
+            cardAvailabilityContainer.innerHTML = `
+                <div class="availability-warning-card">
+                    <span class="warning-title">⚠️ Disponibilité inconnue</span>
+                    <p class="warning-text">Le mieux est d'appeler le magasin pour confirmer les stocks.</p>
+                </div>`;
+        }
+
+        // Render Phone Info
+        if (store.telephone) {
+            cardPhoneContainer.style.display = "flex";
+            cardPhoneContainer.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.802-5.14-4.117-6.942-6.942l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+                <a href="tel:${store.telephone.replace(/\s+/g, '')}">${store.telephone}</a>
+            `;
+        } else {
+            cardPhoneContainer.style.display = "none";
+        }
+
+        // Render Website Verification Link
+        if (store.url_dispo) {
+            cardWebsiteBtn.style.display = "inline-flex";
+            cardWebsiteBtn.href = store.url_dispo;
+        } else {
+            cardWebsiteBtn.style.display = "none";
         }
 
         detailCard.style.display = "block";

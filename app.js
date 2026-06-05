@@ -8,6 +8,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Application State
     let map = null;
+    let darkTileLayer = null;
+    let lightTileLayer = null;
+    let currentTileLayer = null;
     let markerClusterGroup = null;
     let allStores = [];
     let filteredStores = [];
@@ -106,11 +109,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }).setView(defaultCenter, defaultZoom);
 
         // CartoDB Dark Matter tile layer for an elegant night celestial feel
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        darkTileLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             subdomains: "abcd",
             maxZoom: 20
-        }).addTo(map);
+        });
+
+        // CartoDB Voyager tile layer for the light theme option
+        lightTileLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: "abcd",
+            maxZoom: 20
+        });
+
+        // Default to dark tile layer
+        darkTileLayer.addTo(map);
+        currentTileLayer = darkTileLayer;
 
         // Initialize Marker Cluster Group with custom styling
         markerClusterGroup = L.markerClusterGroup({
@@ -693,6 +707,33 @@ document.addEventListener("DOMContentLoaded", () => {
             // On mobile, restore sidebar drawer open status
             if (window.innerWidth <= 960) {
                 toggleSidebar(true);
+            }
+        });
+    }
+
+    // Map theme toggle functionality (Switching tile layers and theme class)
+    const mapThemeToggleBtn = document.getElementById("map-theme-toggle");
+    const mapSection = document.getElementById("map-section");
+    if (mapThemeToggleBtn && mapSection) {
+        mapThemeToggleBtn.addEventListener("click", () => {
+            const isLightTheme = mapSection.classList.contains("map-light-theme");
+            
+            if (isLightTheme) {
+                // Switch to Dark Theme
+                mapSection.classList.remove("map-light-theme");
+                if (map && darkTileLayer && currentTileLayer !== darkTileLayer) {
+                    map.removeLayer(currentTileLayer);
+                    darkTileLayer.addTo(map);
+                    currentTileLayer = darkTileLayer;
+                }
+            } else {
+                // Switch to Light Theme
+                mapSection.classList.add("map-light-theme");
+                if (map && lightTileLayer && currentTileLayer !== lightTileLayer) {
+                    map.removeLayer(currentTileLayer);
+                    lightTileLayer.addTo(map);
+                    currentTileLayer = lightTileLayer;
+                }
             }
         });
     }

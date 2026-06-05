@@ -311,7 +311,10 @@ document.addEventListener("DOMContentLoaded", () => {
         listItems.forEach((item) => {
             if (item.dataset.id === store.id) {
                 item.classList.add("active");
-                item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                // Only scroll into view if sidebar drawer is open on mobile, or on desktop
+                if (window.innerWidth > 960 || sidebar.classList.contains("open")) {
+                    item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                }
             } else {
                 item.classList.remove("active");
             }
@@ -593,6 +596,10 @@ document.addEventListener("DOMContentLoaded", () => {
             sidebar.classList.remove("open");
             burgerIcon.style.display = "block";
             closeIcon.style.display = "none";
+            // Safeguard: Ensure the viewport does not remain scrolled out of bounds on mobile
+            if (window.innerWidth <= 960) {
+                window.scrollTo(0, 0);
+            }
         }
     }
 

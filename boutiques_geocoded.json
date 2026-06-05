@@ -24,6 +24,18 @@
         "url_dispo": "https://www.joueclub.fr/jeux-exterieurs-et-sports/lumios-3770039692008.html"
     },
     {
+        "id": "demo-joueclub-bourges",
+        "nom": "JouéClub Bourges",
+        "lat": 47.0858,
+        "lon": 2.3934,
+        "city": "BOURGES",
+        "adresse": "80 Rue Mirebeau",
+        "postcode": "18000",
+        "telephone": "02 48 24 75 18",
+        "disponibilite": "limite",
+        "url_dispo": "https://www.joueclub.fr/jeux-exterieurs-et-sports/lumios-3770039692008.html"
+    },
+    {
         "id": "demo-bcd-castelnaudary",
         "nom": "BCD Jeux",
         "lat": 43.3148,

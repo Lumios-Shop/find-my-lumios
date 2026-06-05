@@ -473,45 +473,93 @@ document.addEventListener("DOMContentLoaded", () => {
     /**
      * 7. SEARCH & FILTER LOGIC
      */
-    function handleSearch() {
+    let searchTimeout = null;
+
+    async function handleSearch() {
         const term = searchInput.value.toLowerCase().trim();
 
         if (term === "") {
             clearSearchBtn.style.display = "none";
             filteredStores = [...allStores];
+            filteredStores.forEach(s => delete s.distance);
+            if (geoStatusIndicator) {
+                geoStatusIndicator.style.display = "none";
+                geoStatusIndicator.innerHTML = '<span class="pulse-dot"></span> Trié par proximité';
+            }
             showMascotCard();
-        } else {
-            clearSearchBtn.style.display = "flex";
-            hideMascotCard();
-            
-            // Search criteria: Name, City, Postcode, Address
-            filteredStores = allStores.filter((store) => {
-                return (
-                    store.nom.toLowerCase().includes(term) ||
-                    store.city.toLowerCase().includes(term) ||
-                    store.postcode.toLowerCase().includes(term) ||
-                    store.adresse.toLowerCase().includes(term)
-                );
-            });
-        }
-
-        // Deselect active store if it has been filtered out
-        if (activeStoreId && !filteredStores.some(s => s.id === activeStoreId)) {
             deselectActiveMarker();
             hideDetailCard();
+            renderStoreMarkers();
+            renderStoresList();
+            adjustMapViewToFilteredStores();
+            return;
         }
 
-        // Re-sort by proximity if geolocation is active
-        if (userCoords) {
-            sortStoresByProximity();
+        clearSearchBtn.style.display = "flex";
+        hideMascotCard();
+
+        const hasDigits = /\d/.test(term);
+        const matchesStoreName = allStores.some(s => s.nom.toLowerCase().includes(term));
+        
+        // If query looks like a postal code or city (has digits, doesn't match any store name, or is at least 3 chars)
+        if (hasDigits || !matchesStoreName || term.length >= 3) {
+            try {
+                const response = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(term)}&limit=1`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.features && data.features.length > 0) {
+                        const feature = data.features[0];
+                        const [lon, lat] = feature.geometry.coordinates;
+                        const label = feature.properties.label;
+                        const score = feature.properties.score;
+                        
+                        // If it's a postcode, municipality, or has high score match
+                        if (feature.properties.type === "municipality" || feature.properties.type === "postcode" || score > 0.5) {
+                            filteredStores = allStores.map((store) => {
+                                const dist = getDistance(lat, lon, store.lat, store.lon);
+                                return { ...store, distance: dist };
+                            }).filter(store => store.distance <= 25);
+                            
+                            // Sort ascending by proximity to searched place
+                            filteredStores.sort((a, b) => a.distance - b.distance);
+                            
+                            if (geoStatusIndicator) {
+                                geoStatusIndicator.innerHTML = `<span class="pulse-dot"></span> À moins de 25 km de <strong>${label}</strong>`;
+                                geoStatusIndicator.style.display = "flex";
+                            }
+                            
+                            counterValue.textContent = filteredStores.length;
+                            renderStoreMarkers();
+                            renderStoresList();
+                            adjustMapViewToFilteredStores();
+                            return;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("Geocoding API failed, falling back to text search", err);
+            }
         }
 
-        // Update view
+        // Fallback: Standard Text Filter
+        filteredStores = allStores.filter((store) => {
+            return (
+                store.nom.toLowerCase().includes(term) ||
+                store.city.toLowerCase().includes(term) ||
+                store.postcode.toLowerCase().includes(term) ||
+                store.adresse.toLowerCase().includes(term)
+            );
+        });
+        
+        filteredStores.forEach(s => delete s.distance);
+        
+        if (geoStatusIndicator) {
+            geoStatusIndicator.style.display = "none";
+        }
+        
         counterValue.textContent = filteredStores.length;
         renderStoreMarkers();
         renderStoresList();
-
-        // Adjust map view bounds to match search results
         adjustMapViewToFilteredStores();
     }
 
@@ -531,18 +579,39 @@ document.addEventListener("DOMContentLoaded", () => {
         if (filteredStores.length === 1) {
             map.setView([filteredStores[0].lat, filteredStores[0].lon], 13);
         } else if (filteredStores.length < allStores.length) {
-            // Fit bounds of filtered stores
             const bounds = L.latLngBounds(filteredStores.map(s => [s.lat, s.lon]));
             map.fitBounds(bounds, { padding: [50, 50], maxZoom: 15 });
         } else {
-            // Reset to default center of France (search cleared)
-            map.setView([46.45, 2.2], 6);
+            map.setView(defaultCenter, defaultZoom);
         }
     }
 
-    searchInput.addEventListener("input", handleSearch);
+    // Debounce function to limit geocoding API rate limits and lag
+    function debouncedSearch() {
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+        }
+        searchTimeout = setTimeout(() => {
+            handleSearch();
+        }, 300);
+    }
+
+    searchInput.addEventListener("input", debouncedSearch);
+
+    // Instant search on pressing Enter
+    searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+            handleSearch();
+        }
+    });
     
     clearSearchBtn.addEventListener("click", () => {
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+        }
         searchInput.value = "";
         deselectActiveMarker();
         hideDetailCard();

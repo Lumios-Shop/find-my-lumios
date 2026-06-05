@@ -1,63 +1,63 @@
 [
     {
-        "id": "demo-cultura-bordeaux",
-        "nom": "Cultura Bordeaux Lac",
-        "lat": 44.882,
-        "lon": -0.570,
-        "city": "BORDEAUX",
-        "adresse": "90 Avenue des 40 Journaux, CC Coeur Ginko",
-        "postcode": "33000",
-        "telephone": "05 33 89 68 10",
-        "disponibilite": "disponible",
-        "url_dispo": "https://www.cultura.com/p-lumios-12820336.html?mkpOffer=disabled"
+        "id":  "demo-cultura-bordeaux",
+        "nom":  "Cultura Bordeaux Lac",
+        "lat":  44.882,
+        "lon":  -0.570,
+        "city":  "BORDEAUX",
+        "adresse":  "90 Avenue des 40 Journaux, CC Coeur Ginko",
+        "postcode":  "33000",
+        "telephone":  "05 33 89 68 10",
+        "disponibilite":  "disponible",
+        "url_dispo":  "https://www.cultura.com/p-lumios-12820336.html?mkpOffer=disabled"
     },
     {
-        "id": "demo-joueclub-paris",
-        "nom": "Village JouéClub Paris",
-        "lat": 48.8715,
-        "lon": 2.3392,
-        "city": "PARIS",
-        "adresse": "3-5 Boulevard des Italiens",
-        "postcode": "75002",
-        "telephone": "01 53 45 41 41",
-        "disponibilite": "limite",
-        "url_dispo": "https://www.joueclub.fr/jeux-exterieurs-et-sports/lumios-3770039692008.html"
+        "id":  "demo-joueclub-paris",
+        "nom":  "Village JouéClub Paris",
+        "lat":  48.8715,
+        "lon":  2.3392,
+        "city":  "PARIS",
+        "adresse":  "3-5 Boulevard des Italiens",
+        "postcode":  "75002",
+        "telephone":  "01 53 45 41 41",
+        "disponibilite":  "limite",
+        "url_dispo":  "https://www.joueclub.fr/jeux-exterieurs-et-sports/lumios-3770039692008.html"
     },
     {
-        "id": "demo-joueclub-bourges",
-        "nom": "JouéClub Bourges",
-        "lat": 47.0858,
-        "lon": 2.3934,
-        "city": "BOURGES",
-        "adresse": "80 Rue Mirebeau",
-        "postcode": "18000",
-        "telephone": "02 48 24 75 18",
-        "disponibilite": "limite",
-        "url_dispo": "https://www.joueclub.fr/jeux-exterieurs-et-sports/lumios-3770039692008.html"
+        "id":  "demo-joueclub-bourges",
+        "nom":  "JouéClub Bourges",
+        "lat":  47.0858,
+        "lon":  2.3934,
+        "city":  "BOURGES",
+        "adresse":  "80 Rue Mirebeau",
+        "postcode":  "18000",
+        "telephone":  "02 48 24 75 18",
+        "disponibilite":  "limite",
+        "url_dispo":  "https://www.joueclub.fr/jeux-exterieurs-et-sports/lumios-3770039692008.html"
     },
     {
-        "id": "demo-bcd-castelnaudary",
-        "nom": "BCD Jeux",
-        "lat": 43.3148,
-        "lon": 1.9482,
-        "city": "CASTELNAUDARY",
-        "adresse": "230 Avenue du Docteur Guilhem",
-        "postcode": "11400",
-        "telephone": "04 69 96 90 77",
-        "disponibilite": "disponible",
-        "url_dispo": "https://www.bcd-jeux.fr/voiture-telecommandee-vehicule-rc/34569-lumios-lumios-3770039692008.html?srsltid=AfmBOorV_KkEqcqPTypc-jtyVKmcfUXYbCbEgAkiVHYDxWWKotxPWtkU"
+        "id":  "demo-bcd-castelnaudary",
+        "nom":  "BCD Jeux",
+        "lat":  43.3148,
+        "lon":  1.9482,
+        "city":  "CASTELNAUDARY",
+        "adresse":  "230 Avenue du Docteur Guilhem",
+        "postcode":  "11400",
+        "telephone":  "04 69 96 90 77",
+        "disponibilite":  "disponible",
+        "url_dispo":  "https://www.bcd-jeux.fr/voiture-telecommandee-vehicule-rc/34569-lumios-lumios-3770039692008.html?srsltid=AfmBOorV_KkEqcqPTypc-jtyVKmcfUXYbCbEgAkiVHYDxWWKotxPWtkU"
     },
     {
-        "id": "demo-cultura-defense",
-        "nom": "Cultura La Défense",
-        "lat": 48.8914,
-        "lon": 2.2385,
-        "city": "PUTEAUX",
-        "adresse": "Westfield Les 4 Temps",
-        "postcode": "92800",
-        "telephone": "01 47 76 11 00",
-        "disponibilite": "rupture",
-        "url_dispo": "https://www.cultura.com/p-lumios-12820336.html?mkpOffer=disabled"
+        "id":  "demo-cultura-defense",
+        "nom":  "Cultura La Défense",
+        "lat":  48.8914,
+        "lon":  2.2385,
+        "city":  "PUTEAUX",
+        "adresse":  "Westfield Les 4 Temps",
+        "postcode":  "92800",
+        "telephone":  "01 47 76 11 00",
+        "disponibilite":  "rupture",
+        "url_dispo":  "https://www.cultura.com/p-lumios-12820336.html?mkpOffer=disabled"
     },
     {
         "id":  "2",
@@ -69,7 +69,7 @@
         "score":  0.96715363636363627,
         "postcode":  "79300",
         "lat":  46.841047,
-        "telephone": "05 49 74 12 34"
+        "telephone":  "05 49 74 12 34"
     },
     {
         "id":  "3",
@@ -81,7 +81,7 @@
         "score":  0.96819636363636352,
         "postcode":  "90000",
         "lat":  47.635677,
-        "telephone": "03 84 21 56 78"
+        "telephone":  "03 84 21 56 78"
     },
     {
         "id":  "4",
@@ -93,7 +93,7 @@
         "score":  0.97675545454545443,
         "postcode":  "31000",
         "lat":  43.604084,
-        "telephone": "05 61 22 33 44"
+        "telephone":  "05 61 22 33 44"
     },
     {
         "id":  "5",
@@ -105,7 +105,7 @@
         "score":  0.97170818181818164,
         "postcode":  "27200",
         "lat":  49.093996,
-        "telephone": "02 32 51 99 00"
+        "telephone":  "02 32 51 99 00"
     },
     {
         "id":  "6",
@@ -127,7 +127,8 @@
         "label":  "52 Rue Léon Gambetta 31000 Toulouse",
         "score":  0.98137818181818171,
         "postcode":  "31000",
-        "lat":  43.603468
+        "lat":  43.603468,
+        "telephone":  "05 31 15 18 33"
     },
     {
         "id":  "8",
@@ -138,7 +139,8 @@
         "label":  "69B Rue des Trois Conils 33000 Bordeaux",
         "score":  0.7470373150105708,
         "postcode":  "33000",
-        "lat":  44.83854
+        "lat":  44.83854,
+        "telephone":  "05 57 35 71 21"
     },
     {
         "id":  "9",
@@ -149,7 +151,8 @@
         "label":  "3 Rue de Cadore 42300 Roanne",
         "score":  0.96401909090909088,
         "postcode":  "42300",
-        "lat":  46.039274
+        "lat":  46.039274,
+        "telephone":  "04 77 72 25 40"
     },
     {
         "id":  "10",
@@ -160,7 +163,8 @@
         "label":  "1 Rue des Bains 73100 Aix-les-Bains",
         "score":  0.96514636363636352,
         "postcode":  "73100",
-        "lat":  45.6894
+        "lat":  45.6894,
+        "telephone":  "04 57 34 69 86"
     },
     {
         "id":  "11",
@@ -171,7 +175,8 @@
         "label":  "7bis Rue de l\u0027Ancien Courrier 34000 Montpellier",
         "score":  0.91956636363636357,
         "postcode":  "34000",
-        "lat":  43.609166
+        "lat":  43.609166,
+        "telephone":  "04 67 60 81 33"
     },
     {
         "id":  "12",
@@ -182,7 +187,8 @@
         "label":  "13 Rue des Vieilles Boucheries 86000 Poitiers",
         "score":  0.96854818181818181,
         "postcode":  "86000",
-        "lat":  46.583883
+        "lat":  46.583883,
+        "telephone":  "05 49 50 15 50"
     },
     {
         "id":  "13",
@@ -193,7 +199,8 @@
         "label":  "27b Grande Rue 07190 Saint-Sauveur-de-Montagut",
         "score":  0.81769371541501967,
         "postcode":  "07190",
-        "lat":  44.822017
+        "lat":  44.822017,
+        "telephone":  "06 61 75 79 96"
     },
     {
         "id":  "14",
@@ -215,7 +222,8 @@
         "label":  "77 Rue Gambetta 17200 Royan",
         "score":  0.97050909090909088,
         "postcode":  "17200",
-        "lat":  45.621536
+        "lat":  45.621536,
+        "telephone":  "09 72 57 99 86"
     },
     {
         "id":  "16",
@@ -226,7 +234,8 @@
         "label":  "10 Rue du Val de Mayenne 53000 Laval",
         "score":  0.97362636363636357,
         "postcode":  "53000",
-        "lat":  48.070308
+        "lat":  48.070308,
+        "telephone":  "02 43 53 83 24"
     },
     {
         "id":  "17",
@@ -237,7 +246,8 @@
         "label":  "30 Route de Beaupréau 49410 Mauges-sur-Loire",
         "score":  0.96509545454545442,
         "postcode":  "49410",
-        "lat":  47.358523
+        "lat":  47.358523,
+        "telephone":  "02 72 79 22 61"
     },
     {
         "id":  "18",
@@ -259,7 +269,8 @@
         "label":  "8 Rue d\u0027Alger 06000 Nice",
         "score":  0.97167454545454546,
         "postcode":  "06000",
-        "lat":  43.70423
+        "lat":  43.70423,
+        "telephone":  "04 89 08 02 65"
     },
     {
         "id":  "20",
@@ -270,7 +281,8 @@
         "label":  "20 Rue Nationale 72000 Le Mans",
         "score":  0.98111090909090914,
         "postcode":  "72000",
-        "lat":  48.000306
+        "lat":  48.000306,
+        "telephone":  "02 43 14 94 08"
     },
     {
         "id":  "21",
@@ -281,7 +293,8 @@
         "label":  "36 Rue de la Harpe 27000 Évreux",
         "score":  0.97090999999999994,
         "postcode":  "27000",
-        "lat":  49.022733
+        "lat":  49.022733,
+        "telephone":  "02 32 36 49 84"
     },
     {
         "id":  "22",
@@ -303,7 +316,8 @@
         "label":  "79 Grande Rue 89100 Sens",
         "score":  0.97244272727272729,
         "postcode":  "89100",
-        "lat":  48.197185
+        "lat":  48.197185,
+        "telephone":  "09 81 96 94 24"
     },
     {
         "id":  "24",
@@ -314,7 +328,8 @@
         "label":  "7 Cours lieutaud 13006 Marseille",
         "score":  0.97486272727272716,
         "postcode":  "13006",
-        "lat":  43.295173
+        "lat":  43.295173,
+        "telephone":  "04 91 48 25 43"
     },
     {
         "id":  "25",
@@ -347,7 +362,8 @@
         "label":  "3 Rue Colbert 37000 Tours",
         "score":  0.97977090909090891,
         "postcode":  "37000",
-        "lat":  47.395436
+        "lat":  47.395436,
+        "telephone":  "02 47 64 89 81"
     },
     {
         "id":  "28",
@@ -358,7 +374,8 @@
         "label":  "39 Rue du Onze Novembre 42100 Saint-Étienne",
         "score":  0.72144664031620553,
         "postcode":  "42100",
-        "lat":  45.425152
+        "lat":  45.425152,
+        "telephone":  "04 77 32 53 32"
     },
     {
         "id":  "29",
@@ -369,7 +386,8 @@
         "label":  "55 Rue Pierre Martin 62280 Saint-Martin-Boulogne",
         "score":  0.86961393939393927,
         "postcode":  "62280",
-        "lat":  50.729
+        "lat":  50.729,
+        "telephone":  "03 21 31 58 42"
     },
     {
         "id":  "30",
@@ -380,7 +398,8 @@
         "label":  "13 Rue de Bras 14000 Caen",
         "score":  0.9762763636363635,
         "postcode":  "14000",
-        "lat":  49.182354
+        "lat":  49.182354,
+        "telephone":  "02 31 85 17 77"
     },
     {
         "id":  "31",
@@ -391,7 +410,8 @@
         "label":  "8 Rue de l\u0027Héronnière 44000 Nantes",
         "score":  0.97645545454545446,
         "postcode":  "44000",
-        "lat":  47.21197
+        "lat":  47.21197,
+        "telephone":  "02 51 84 05 05"
     },
     {
         "id":  "32",
@@ -402,7 +422,8 @@
         "label":  "Route de Clisson 44115 Basse-Goulaine",
         "score":  0.70777897959183667,
         "postcode":  "44115",
-        "lat":  47.185162
+        "lat":  47.185162,
+        "telephone":  "04 05 03 18 21"
     },
     {
         "id":  "33",
@@ -413,7 +434,8 @@
         "label":  "6 Rue Beyle Stendhal 38000 Grenoble",
         "score":  0.97133272727272713,
         "postcode":  "38000",
-        "lat":  45.187548
+        "lat":  45.187548,
+        "telephone":  "04 76 54 48 93"
     },
     {
         "id":  "34",
@@ -424,7 +446,8 @@
         "label":  "4 Rue Gambetta 91290 Arpajon",
         "score":  0.9592790909090908,
         "postcode":  "91290",
-        "lat":  48.588181
+        "lat":  48.588181,
+        "telephone":  "09 81 13 13 73"
     },
     {
         "id":  "35",
@@ -446,7 +469,8 @@
         "label":  "113 Rue de Vesle 51100 Reims",
         "score":  0.98208181818181806,
         "postcode":  "51100",
-        "lat":  49.252406
+        "lat":  49.252406,
+        "telephone":  "03 26 24 34 74"
     },
     {
         "id":  "37",
@@ -457,7 +481,8 @@
         "label":  "1 Rue Madame Jan 44260 Savenay",
         "score":  0.96284727272727266,
         "postcode":  "44260",
-        "lat":  47.359808
+        "lat":  47.359808,
+        "telephone":  "02 40 04 23 48"
     },
     {
         "id":  "38",
@@ -468,7 +493,8 @@
         "label":  "17 Rue des Cordeliers 40000 Mont-de-Marsan",
         "score":  0.96617272727272707,
         "postcode":  "40000",
-        "lat":  43.889498
+        "lat":  43.889498,
+        "telephone":  "05 24 28 14 85"
     },
     {
         "id":  "39",
@@ -479,7 +505,8 @@
         "label":  "47 Rue Pannecau 64100 Bayonne",
         "score":  0.97210999999999992,
         "postcode":  "64100",
-        "lat":  43.489812
+        "lat":  43.489812,
+        "telephone":  "05 59 63 72 07"
     },
     {
         "id":  "40",
@@ -622,7 +649,8 @@
         "label":  "2 Rue des halles 85000 La Roche-sur-Yon",
         "score":  0.96972818181818166,
         "postcode":  "85000",
-        "lat":  46.669125
+        "lat":  46.669125,
+        "telephone":  "09 51 94 13 98"
     },
     {
         "id":  "53",
@@ -633,7 +661,8 @@
         "label":  "1 Rue Gambetta 72000 Le Mans",
         "score":  0.9823072727272727,
         "postcode":  "72000",
-        "lat":  48.004148
+        "lat":  48.004148,
+        "telephone":  "02 43 87 62 41"
     },
     {
         "id":  "54",
@@ -644,7 +673,8 @@
         "label":  "rue Adrien Dubouché 87000 Limoges",
         "score":  0.897657012987013,
         "postcode":  "87000",
-        "lat":  45.831376
+        "lat":  45.831376,
+        "telephone":  "05 55 34 52 43"
     },
     {
         "id":  "55",
@@ -655,7 +685,8 @@
         "label":  "1 Rue des Trois Croissants 44000 Nantes",
         "score":  0.79130090909090911,
         "postcode":  "44000",
-        "lat":  47.216715
+        "lat":  47.216715,
+        "telephone":  "02 40 12 14 99"
     },
     {
         "id":  "56",
@@ -666,7 +697,8 @@
         "label":  "5 Rue du Rabot 79000 Niort",
         "score":  0.96970454545454543,
         "postcode":  "79000",
-        "lat":  46.324448
+        "lat":  46.324448,
+        "telephone":  "08 00 80 33 23"
     },
     {
         "id":  "57",
@@ -677,7 +709,8 @@
         "label":  "19 Rue de l\u0027Ange 66000 Perpignan",
         "score":  0.97195,
         "postcode":  "66000",
-        "lat":  42.698162
+        "lat":  42.698162,
+        "telephone":  "09 53 62 79 84"
     },
     {
         "id":  "58",
@@ -688,7 +721,8 @@
         "label":  "55 Rue de la Pie 35400 Saint-Malo",
         "score":  0.832178044077135,
         "postcode":  "35400",
-        "lat":  48.632964
+        "lat":  48.632964,
+        "telephone":  "09 61 51 64 95"
     },
     {
         "id":  "59",
@@ -699,7 +733,8 @@
         "label":  "75 Rue du Commerce 37000 Tours",
         "score":  0.97743636363636355,
         "postcode":  "37000",
-        "lat":  47.394815
+        "lat":  47.394815,
+        "telephone":  "02 47 05 11 91"
     },
     {
         "id":  "60",
@@ -710,7 +745,8 @@
         "label":  "3 Rue Robert Schuman 95880 Enghien-les-Bains",
         "score":  0.7456216913319238,
         "postcode":  "95880",
-        "lat":  48.9706
+        "lat":  48.9706,
+        "telephone":  "01 34 28 53 29"
     },
     {
         "id":  "61",
@@ -721,7 +757,8 @@
         "label":  "10 Rue de Montaran 45400 Fleury-les-Aubrais",
         "score":  0.96289,
         "postcode":  "45400",
-        "lat":  47.944139
+        "lat":  47.944139,
+        "telephone":  "02 38 61 43 69"
     },
     {
         "id":  "62",
@@ -732,7 +769,8 @@
         "label":  "Rue de Bellefeuille 79300 Bressuire",
         "score":  0.72599294372294376,
         "postcode":  "79300",
-        "lat":  46.851777
+        "lat":  46.851777,
+        "telephone":  "05 49 74 24 44"
     },
     {
         "id":  "63",
@@ -743,7 +781,8 @@
         "label":  "Boulevard Docteurs Aribat 81100 Castres",
         "score":  0.823121313131313,
         "postcode":  "81100",
-        "lat":  43.605143
+        "lat":  43.605143,
+        "telephone":  "05 63 51 71 50"
     },
     {
         "id":  "64",
@@ -765,7 +804,8 @@
         "label":  "2 Rue Louis Rene Villerme 29900 Concarneau",
         "score":  0.9619045454545454,
         "postcode":  "29900",
-        "lat":  47.888118
+        "lat":  47.888118,
+        "telephone":  "02 98 50 43 04"
     },
     {
         "id":  "66",

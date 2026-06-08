@@ -1,4 +1,5 @@
-Boutiques.xlsx
+*.xlsx
+*.XLSX
 Lancer_Carte.bat
 Serveur.ps1
 boutiques.json

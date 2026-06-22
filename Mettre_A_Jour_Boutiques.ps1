@@ -3,7 +3,7 @@
 # ==============================================================================
 
 param (
-    [string]$ExcelName = "Boutiques_062026.xlsx",
+    [string]$ExcelName = "Boutiques_22062026.xlsx",
     [string]$JsonName = "boutiques_geocoded.json",
     [bool]$AutoPush = $true
 )
@@ -31,6 +31,13 @@ $existingStores = @()
 if (Test-Path $JsonPath) {
     Write-Host "Chargement de la base existante..." -ForegroundColor White
     $jsonText = [System.IO.File]::ReadAllText($JsonPath, [System.Text.Encoding]::UTF8)
+    if ($jsonText -match '[\u00C2-\u00C3][\u0080-\u00BF]') {
+        Write-Host "Détection et réparation des caractères accentués corrompus dans la base de données..." -ForegroundColor Yellow
+        $win1252 = [System.Text.Encoding]::GetEncoding(1252)
+        $utf8 = [System.Text.Encoding]::UTF8
+        $bytes = $win1252.GetBytes($jsonText)
+        $jsonText = $utf8.GetString($bytes)
+    }
     $existingStores = $jsonText | ConvertFrom-Json
     Write-Host "$($existingStores.Count) boutiques existantes chargées." -ForegroundColor Green
 } else {
@@ -269,7 +276,7 @@ if ($storesToGeocode.Count -gt 0) {
     & curl.exe -X POST -F "data=@$csvTempPath" -F "columns=adresse" -F "columns=postcode" -F "columns=city" -o $csvResultPath https://api-adresse.data.gouv.fr/search/csv/
     
     if (Test-Path $csvResultPath) {
-        $geocodedResults = Import-Csv -Path $csvResultPath
+        $geocodedResults = Import-Csv -Path $csvResultPath -Encoding UTF8
         Write-Host "Résultats reçus de l'API de géocodage." -ForegroundColor Green
         
         foreach ($res in $geocodedResults) {

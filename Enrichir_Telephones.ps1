@@ -13,6 +13,13 @@ if (-not (Test-Path $jsonPath)) {
 # Charger les boutiques en UTF-8
 Write-Host "Chargement de la base de données..." -ForegroundColor Cyan
 $jsonText = [System.IO.File]::ReadAllText($jsonPath, [System.Text.Encoding]::UTF8)
+if ($jsonText -match '[\u00C2-\u00C3][\u0080-\u00BF]') {
+    Write-Host "Détection et réparation des caractères accentués corrompus dans la base de données..." -ForegroundColor Yellow
+    $win1252 = [System.Text.Encoding]::GetEncoding(1252)
+    $utf8 = [System.Text.Encoding]::UTF8
+    $bytes = $win1252.GetBytes($jsonText)
+    $jsonText = $utf8.GetString($bytes)
+}
 $boutiques = $jsonText | ConvertFrom-Json
 $total = $boutiques.Count
 Write-Host "$total boutiques chargées." -ForegroundColor Green
